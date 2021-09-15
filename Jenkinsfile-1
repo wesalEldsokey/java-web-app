@@ -7,8 +7,14 @@ pipeline {
     stage('Scan') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube') { 
-          sh './mvnw clean sonar:sonar'
-        }
+          // sh './mvnw clean sonar:sonar'
+          sh """
+   ${scannerHome}/bin/sonar-scanner \
+   -Dsonar.projectKey=your_project_key_created_in_sonarqube_as_project \
+   -Dsonar.sources=. \
+"""
+ 
+ }
       }
     }
   }
