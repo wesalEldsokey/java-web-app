@@ -73,7 +73,7 @@ pipeline {
         
       steps {
         script{
-          gr.testApp()
+          gv.testApp()
         } 
             }
                   }
@@ -83,7 +83,7 @@ pipeline {
     stage ("depoly"){
       steps {
         script {
-         gr.deployApp()
+         gv.deployApp()
         }
 //         echo "deploying the application ${params.VERSION}"
         //echo "depolying with ${SERVER_CREDENTIALS}"
