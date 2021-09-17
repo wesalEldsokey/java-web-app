@@ -24,7 +24,7 @@ pipeline {
 //   parameters {
 //   //  String (name: 'VERSION' , defaultValueL '', description: '')
 //     choice(name: 'VERSION' ,choices: ['1.1.0' , '1.2.0'] ,description: '')
- boleanParam (name: 'scapeTest' ,defaultValue: true ,description : '')
+ booleanParam (name: 'scapeTest' ,defaultValue: true ,description : '')
 //   }
   environment {
     NEW_VERSION = '1.3.0'
