@@ -5,6 +5,7 @@
   // 5- Access build Tools for your projects
   // 6- parameters => for some additional configuration that you want to provide in your build to change some behavior 
   //                  ex : If I want to some which version of the application I want to deploy 
+  // 7- using groovy script
 
 
 
@@ -15,6 +16,8 @@
 // Then using envireoment variable we use ${redentials('credentialId')}  function
   // credentials may be Golbal So we define as an env var in enviroment 
   // or we need this crediential for one stage So we use withcredientials
+def gv 
+ 
 pipeline {
   agent any  
   tools {
@@ -32,9 +35,25 @@ pipeline {
   }
   stages {
     
+    stage ("init") {
+      steps {   
+        script {
+          gv = load "script.groovy"
+        }
+        
+        
+        echo 'building the application'
+           }
+    }
+    
+    
+    
+    
     stage ("build") {
       steps {
-        echo 'building the application'
+        script {
+          gv.buildApp()
+        }
             }
                     }
     stage ("test"){
@@ -53,9 +72,9 @@ pipeline {
       }
         
       steps {
-        echo 'testing the application'
-        echo "Building version ${NEW_VERSION}"
-       
+        script{
+          gr.testApp()
+        } 
             }
                   }
     
@@ -63,7 +82,9 @@ pipeline {
     
     stage ("depoly"){
       steps {
-        echo 'deploying the application'
+        script {
+         gr.deployApp()
+        }
 //         echo "deploying the application ${params.VERSION}"
         //echo "depolying with ${SERVER_CREDENTIALS}"
         //sh "${SERVER_CREDENTIALS}"
