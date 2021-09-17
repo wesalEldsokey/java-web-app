@@ -66,11 +66,11 @@ pipeline {
         echo "deploying the application ${params.VERSION}"
         //echo "depolying with ${SERVER_CREDENTIALS}"
         //sh "${SERVER_CREDENTIALS}"
-        withcredentials([
-              usernamePassword(credentials: 'server-creadentials' , usernameVariable: USER , passwordVariable: PASS)
-        ]) {
+//         withcredentials([
+//               usernamePassword(credentials: 'server-creadentials' , usernameVariable: USER , passwordVariable: PASS)
+//         ]) {
           sh "sone script ${USER} ${PWD}"
-           }
+//            }
       }
     } }
   post {
