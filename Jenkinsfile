@@ -28,7 +28,7 @@ pipeline {
 //   }
   environment {
     NEW_VERSION = '1.3.0'
-    SERVER_CREDENTIALS = credentials('server-creadentials')
+  //  SERVER_CREDENTIALS = credentials('server-creadentials')
   }
   stages {
     
@@ -69,7 +69,7 @@ pipeline {
 //         withcredentials([
 //               usernamePassword(credentials: 'server-creadentials' , usernameVariable: USER , passwordVariable: PASS)
 //         ]) {
-          sh "sone script ${USER} ${PWD}"
+         // sh "sone script ${USER} ${PWD}"
 //            }
       }
     } }
