@@ -24,7 +24,7 @@ pipeline {
 //   parameters {
 //   //  String (name: 'VERSION' , defaultValueL '', description: '')
 //     choice(name: 'VERSION' ,choices: ['1.1.0' , '1.2.0'] ,description: '')
-//   // boleanParam (name: '' ,defaultValue: true ,desvription )
+ boleanParam (name: 'scapeTest' ,defaultValue: true ,description : '')
 //   }
   environment {
     NEW_VERSION = '1.3.0'
@@ -45,16 +45,17 @@ pipeline {
 //                     }
 //            }     
  
-//       when { 
-//         expression {
-//           params.VERSION == '1.1.0' 
+      when { 
+        expression {
+          params.scapeTest  
           
-//         }
-//       }
+        }
+      }
         
       steps {
         echo 'testing the application'
         echo "Building version ${NEW_VERSION}"
+       
             }
                   }
     
