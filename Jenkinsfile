@@ -63,7 +63,7 @@ pipeline {
     stage ("depoly"){
       steps {
         echo 'deploying the application'
-        echo "deploying the application ${VERSION}"
+        echo "deploying the application ${params.VERSION}"
         //echo "depolying with ${SERVER_CREDENTIALS}"
         //sh "${SERVER_CREDENTIALS}"
         withcredentials([
