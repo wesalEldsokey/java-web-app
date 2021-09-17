@@ -22,9 +22,9 @@ pipeline {
    maven 'maven-3.8' 
   }
   parameters {
-    String (name: 'VERSION' , defaultValueL '', description: '')
- 
-
+  //  String (name: 'VERSION' , defaultValueL '', description: '')
+    choice(name: 'VERSION' ,choices: ['1.1.0' , '1.2.0'] ,description: '')
+  // boleanParam (name: '' ,defaultValue: true ,desvription )
   }
   environment {
     NEW_VERSION = '1.3.0'
@@ -38,14 +38,20 @@ pipeline {
             }
                     }
     stage ("test"){
-      when {
-    // you may want to run a stage under condiions  SO we use "Conditionals" 
+     // you may want to run a stage under condiions  SO we use "Conditionals" 
 
 //         expression {
 //                     BRANCH_NAME == 'main' || BRANCH_NAME == 'dev'
 //                     }
-//            }
-      
+//            }     
+ 
+      when { 
+        expression {
+          params.VERSION == '1.1.0' 
+          
+        }
+      }
+        
       steps {
         echo 'testing the application'
         echo "Building version ${NEW_VERSION}"
@@ -57,6 +63,7 @@ pipeline {
     stage ("depoly"){
       steps {
         echo 'deploying the application'
+        echo "deploying the application ${VERSION}"
         //echo "depolying with ${SERVER_CREDENTIALS}"
         //sh "${SERVER_CREDENTIALS}"
         withcredentials([
@@ -64,8 +71,7 @@ pipeline {
         ]) {
           sh "sone script ${USER} ${PWD}"
            }
-            }
-                    }
+      }
   }
   post {
     always {
