@@ -6,6 +6,7 @@
   // 6- parameters => for some additional configuration that you want to provide in your build to change some behavior 
   //                  ex : If I want to some which version of the application I want to deploy 
   // 7- using groovy script
+  // 8- input parametes for User input => input some date in one of the execution step 
 
 
 
@@ -81,9 +82,20 @@ pipeline {
     
     
     stage ("depoly"){
+      input {
+        message " select env to deploy to"
+        ok "Done"
+        parameters { 
+          choice(name: 'ENV' ,choices: ['dev' , 'test'] ,description: 'shokrn')
+        }
+      }
+      
+      
       steps {
+        
         script {
          gv.deployApp()
+          echo "Deploying to ${ENV}"
         }
 //         echo "deploying the application ${params.VERSION}"
         //echo "depolying with ${SERVER_CREDENTIALS}"
