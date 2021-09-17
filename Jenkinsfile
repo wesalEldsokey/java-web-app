@@ -72,7 +72,7 @@ pipeline {
           sh "sone script ${USER} ${PWD}"
            }
       }
-  }
+    } }
   post {
     always {
            echo "Hiiiiiii"
